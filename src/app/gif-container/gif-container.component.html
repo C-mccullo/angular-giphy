@@ -1,3 +1,28 @@
-<p>
-  gif-container works!
-</p>
+<main class="container">
+  <div class="gif__container">
+    <article *ngFor="let gif of gifs; let i = index" [class.favorited]="gif === favoriteGif" class="gif__item">
+      <h3>{{gif.title}}</h3>
+      <div>
+      </div>
+      <div class="gif__fav-star" (click)="favGif(gif)">Click to Fav</div>
+      <span class="gif__rating">{{gif.rating}}</span>
+      <img style="display:block;max-height:200px;" src={{gif.url}} alt="image of {{gif.title}}">
+    </article>
+  </div>
+    
+  <div class="fav__container" *ngIf="favGifs?.length > 0">
+    <h2>Favourite Gifs</h2>
+    <article *ngFor="let fav of favGifs">
+      <h3 class="fav__title">{{fav.title}}</h3>
+      <div>
+        <label for={{fav.id}}>title:
+          <input class="fav__input" [(ngModel)]="fav.title" id={{fav.id}} placeholder="Give the gif a custom title">
+        </label>
+      </div>
+      <div class="fav__remove" (click)="removeFavGif(fav)">Remove from Favourites</div>
+      <span class="fav__rating">{{fav.rating}}</span>
+      <img class="fav__img" src={{fav.url}} alt="image of {{fav.title}}">
+    </article>
+  </div>
+</main>
+

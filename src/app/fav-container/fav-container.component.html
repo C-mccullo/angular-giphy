@@ -1,0 +1,13 @@
+<div *ngIf="favoriteGifs.length">
+  <article *ngFor="let favoriteGif of FavoriteGifs; let i = index">
+    <h3>{{favoriteGif.title}}</h3>
+    <div>
+      <label for={{favoriteGif.id}}>title:
+        <input [(ngModel)]="favoriteGif.title" id={{favoriteGif.id}} placeholder="Give the gif a custom title">
+      </label>
+    </div>
+    <div class="fav-star" (click)="removeFavGif(favoriteGif)">Click to Fav</div>
+    <span>{{favoriteGif.rating}}</span>
+    <img style="display:block;max-height:200px;" src={{favoriteGif.url}} alt="image of {{favoriteGif.title}}">
+  </article>
+</div>
