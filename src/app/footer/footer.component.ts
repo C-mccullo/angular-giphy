@@ -7,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
   footerLinks = [
-    { text: "home page", url: "/" },
-    { text: "favorites", url: "/favorites" }
+    { text: "check out on github", url: "https://github.com/C-mccullo/angular-giphy" },
+    { text: "made by me", url: "https://colinmccullo.ca" }
   ]
   constructor() { }
 

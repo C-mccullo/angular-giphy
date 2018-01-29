@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './fav-container.component.html',
   styleUrls: ['./fav-container.component.scss']
 })
-export default class FavContainerComponent implements OnInit {
+export class FavContainerComponent implements OnInit {
 
   constructor() { }
 

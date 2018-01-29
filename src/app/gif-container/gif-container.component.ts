@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { GifBlock } from "./gif-block/gif-block";
-import { GIFS } from "../../data/mock-gifs";
+import { Gif } from "../gif/gif";
+
+// Services
+import { GiphyService } from "../services/giphy.service" 
 
 @Component({
   selector: 'app-gif-container',
@@ -8,42 +10,53 @@ import { GIFS } from "../../data/mock-gifs";
   styleUrls: ['./gif-container.component.scss']
 })
 
-export default class GifContainerComponent implements OnInit {
+export class GifContainerComponent implements OnInit {
 
-  gifs = GIFS;
-  favGifs: GifBlock[] = [];
-  // favGifs: GifBlock[] = [
-  //   {
-  //     id: 1,
-  //     rating: 2,
-  //     title: "Poochies",
-  //     url: "https://media.giphy.com/media/5oHQE3n1eBV5e/giphy.gif"
-  //   },
-  //   {
-  //     id: 2,
-  //     url: "https://media.giphy.com/media/u8mNsDNfHCTUQ/giphy.gif",
-  //     title: "Oh Hey",
-  //     rating: 1,
-  //   }];
+  gifs: Gif[];
+  favGifs: Gif[] = [];
 
-  constructor() { }
+  constructor(private giphyService: GiphyService) { }
 
   ngOnInit() {
+    this.getInitialGifs();
   }
 
-  favGif(gif: GifBlock): void {
+  onSearchGifs(searchGifs: any[]): void {
+    console.log("search gifs in parent", searchGifs)
+    this.gifs = searchGifs;
+  }
+
+  getInitialGifs(): void {
+    this.giphyService.getTrendingGifs()
+      .subscribe(
+        gifs => {
+          console.log(gifs);
+          const formattedGifs = gifs.data.map(gif => {
+            return new Gif(gif.id, gif.images.downsized.url, gif.title, 0)
+            // { 
+            //   id: gif.id, 
+            //   url: gif.images.downsized.url,
+            //   title: gif.title,
+            //   rating: 0 
+            // }
+          })
+          this.gifs = formattedGifs;
+        },
+        err => console.log(err)
+      )
+  }
+
+  favGif(gif: Gif): void {
     const gifIndex: number = this.favGifs.indexOf(gif);
     
     if (gifIndex === -1) {
       this.favGifs.push(gif);
-      console.log("adding favs", this.favGifs);
     } else {
-      console.log(this.favGifs)
+      // console.log(this.favGifs)
     }
   }
 
-  removeFavGif(favoriteGif: GifBlock): void {
-    console.log(this.favGifs);
+  removeFavGif(favoriteGif: Gif): void {
     const gifIndex: number = this.favGifs.indexOf(favoriteGif);
     if (gifIndex !== -1) {
       this.favGifs.splice(gifIndex, 1);

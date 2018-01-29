@@ -1,0 +1,7 @@
+<article *ngFor="let gif of gifs" class="gif__item"
+  [class.favorite]="isFavorite(gif.id)"
+>
+  <span class="gif__fav-star" (click)="favGif(gif)">Click to Fav</span>
+  <img style="display:block;max-height:200px;" src={{gif.url}} alt="image of {{gif.title}}">
+  <!-- <span class="gif__rating">{{gif.rating}}</span> -->
+</article>

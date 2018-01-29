@@ -8,6 +8,10 @@
   &__item {
     flex-basis: auto;
     flex-grow: 1;
+    max-width: 350px;
+    img {
+      max-width: 100%;
+    }
   }
   &__fav-star {
     

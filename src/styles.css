@@ -1,1 +1,45 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+  margin: 0px; 
+  font-size: 62.5%;
+  background-color: #2A2E45;
+}
+
+.container {
+  padding: 0rem 0.5rem;
+}
+
+h1, h2, h3, h4, p, a, span, label, input, button {
+  margin: 0px;
+}
+
+h2, h3, h4, p, a, span, label, input, button {
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 28px;
+}
+
+h2 {
+  font-size: 2.2rem;
+}
+
+h3 {
+  font-size: 1.8rem;
+}
+
+p, a, span, label, input button {
+  font-size: 1.6rem;
+}
+
+ul {
+  padding-left: 0px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

@@ -1,3 +1,10 @@
-<header>
-  <h1>{{title}}</h1>
+<header class="header">
+  <h1 class="header__title">{{title}}</h1>
+  <nav class="nav">
+    <ul *ngFor="let link of navLinks">
+      <li class="nav__link">
+        <a routerLink={{link.url}}>{{link.text}}</a>
+      </li>
+    </ul>
+  </nav>
 </header>
